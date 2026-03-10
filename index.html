@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>番茄钟 Pomodoro</title>
+    <meta
+      name="description"
+      content="一个简洁现代的番茄钟（Pomodoro）计时工具，可直接部署到 GitHub Pages。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1 class="app-title">番茄钟</h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+          <span class="theme-toggle-icon">☀️</span>
+        </button>
+      </header>
+
+      <main class="card">
+        <section class="modes" aria-label="模式选择">
+          <button class="mode-button active" data-mode="work">专注</button>
+          <button class="mode-button" data-mode="short-break">短休息</button>
+          <button class="mode-button" data-mode="long-break">长休息</button>
+        </section>
+
+        <section class="timer" aria-label="计时器">
+          <div class="timer-display" id="timerDisplay">25:00</div>
+          <div class="timer-subtitle" id="timerSubtitle">准备开始专注</div>
+          <div class="timer-controls">
+            <button class="primary" id="startPauseBtn">开始</button>
+            <button class="ghost" id="resetBtn">重置</button>
+          </div>
+        </section>
+
+        <section class="settings" aria-label="计时设置">
+          <h2 class="section-title">时长设置（分钟）</h2>
+          <div class="settings-grid">
+            <label class="field">
+              <span>专注</span>
+              <input
+                id="workMinutes"
+                type="number"
+                min="1"
+                max="120"
+                value="25"
+              />
+            </label>
+            <label class="field">
+              <span>短休息</span>
+              <input
+                id="shortBreakMinutes"
+                type="number"
+                min="1"
+                max="60"
+                value="5"
+              />
+            </label>
+            <label class="field">
+              <span>长休息</span>
+              <input
+                id="longBreakMinutes"
+                type="number"
+                min="1"
+                max="60"
+                value="15"
+              />
+            </label>
+            <label class="field">
+              <span>长休间隔（专注轮数）</span>
+              <input
+                id="sessionsBeforeLongBreak"
+                type="number"
+                min="1"
+                max="10"
+                value="4"
+              />
+            </label>
+          </div>
+          <div class="settings-row">
+            <label class="checkbox">
+              <input id="autoStartNext" type="checkbox" checked />
+              <span>自动开始下一轮</span>
+            </label>
+            <label class="checkbox">
+              <input id="soundEnabled" type="checkbox" checked />
+              <span>结束提示音</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="progress" aria-label="今日进度">
+          <h2 class="section-title">今日专注</h2>
+          <div class="progress-row">
+            <div class="progress-circles" id="sessionCircles"></div>
+            <div class="progress-text">
+              <span id="sessionCount">0</span> 轮
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>可直接部署到 GitHub Pages 的前端番茄钟应用。</span>
+      </footer>
+    </div>
+
+    <audio id="beepSound" preload="auto">
+      <source
+        src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
